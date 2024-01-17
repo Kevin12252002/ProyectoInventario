@@ -1,0 +1,37 @@
+﻿@model ProyectoInventario.Models.Entidades.Bodega
+@{
+    ViewData["Title"] = "Editar";
+    Layout = null;
+}
+
+<div class=" col-md-12">
+    <div class=" card">
+        <div class=" card-header text-center">
+            <h5> Editar Bodega</h5>
+        </div>
+        <div class=" card-body text-center">
+            <form asp-action="Editar">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="BodegaID" />
+                <div class="form-group">
+                    <label>Ingrese nombre de la bodega</label>
+                    <input asp-for="NombreBodega" class="form-control" placeholder="Ingrese el nuevo nombre de la bodega" />
+                    <span asp-validation-for="NombreBodega" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Ubicacion</label>
+                    <input asp-for="Ubicacion" class="form-control" placeholder="Ingrese el nuevo nobre de la Ubicacion" />
+                    <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                </div>
+
+
+                <div class=" card-footer ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Guardar</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

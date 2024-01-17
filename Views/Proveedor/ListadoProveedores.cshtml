@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ProyectoInventario.Models.Entidades.Proveedor>
+@{
+    ViewData["Title"] = "ListadoProveedores";
+
+    Layout = "_Layout-Principal";
+
+}
+
+
+@if (TempData["AlertMessage"] != null)
+{
+
+
+    <div class=" alert alert-success">
+        <strong> Ok!! ---</strong>@TempData["AlertMessage"]
+    </div>
+}
+<p>
+    <a onclick="showInPopup('@Url.Action("Crear" , "Proveedor",
+       new { Proveedorid = 0 }, Context.Request.Scheme)','')"
+       class=" btn btn-sn btn-primary text-white">
+        <i class="fa fa-plus-circle"></i> Agregar un Proveedor
+    </a>
+
+
+</p>
+
+<div class="col-md-12">
+
+    <div class="card">
+        <div class="card-header text-center">
+            <h5>Lista de Proveedor</h5>
+        </div>
+        <div class="card-body">
+            <table id="autor" class="table table- table-hover table responsive table stripped">
+
+                <thead>
+                    <tr>
+                        <th scope="col">ID_Proveedor</th>
+                        <th scope="col">Nombre_Proveedor</th>
+                        <th scope="col">Contacto</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.ProveedorID</th>
+                            <td> @Html.DisplayFor(ModelItem => item.NombreProveedor) </td>
+                            <td> @Html.DisplayFor(ModelItem => item.Contacto) </td>
+                            <td> @Html.DisplayFor(ModelItem => item.Telefono) </td>
+                            <td> @Html.DisplayFor(ModelItem => item.Correo) </td>
+
+                            <td>
+                                <a onclick="showInPopup('@Url.Action("Editar","Proveedor",
+                                new { id = item.ProveedorID }, Context.Request.Scheme)' ,
+                                  'Actualizar Proveedor')" class="btn btn-outline-warning btn-sm">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                <button data-id="@item.ProveedorID"
+                                        class="btn btn-outline-danger btn-sm deleteItem"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteDialog">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<partial name="_MostarModal" />
+<partial name="_EliminarModal" />
+
+@section Scripts {
+
+
+    <script src="~/js/showmodal.js"></script>
+
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#autor').DataTable(
+                {
+                    "language": {
+                        url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                    },
+                });
+        });
+    </script>
+
+    <script>
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Proveedors/Eliminar/', false);
+    </script>
+
+}

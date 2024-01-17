@@ -1,0 +1,153 @@
+﻿@model ProyectoInventario.Models.Entidades.Usuario
+@{
+    ViewData["Title"] = "Registro";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('/img/2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .registro-header {
+            background-color: rgb(30, 144, 255);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .registro-header img {
+                max-width: 40%;
+                height: auto;
+                border-radius: 50%; /* Añadir un borde redondeado a la imagen si es necesario */
+                border: 2px solid #fff; /* Añadir un borde blanco alrededor de la imagen */
+            }
+
+        .registro-form {
+            /* Estilos adicionales para el formulario si es necesario */
+            background-color: rgb(30, 144, 255);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+
+        }
+
+        .invalid-feedback {
+            display: none;
+            color: red;
+        }
+
+        input:invalid + .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5 pt-5">
+
+        <div class="row justify-content-end">
+            <div class="col-12 col-xl-4 col-md-6">
+                <div class="opacity-75">
+                <div class="card">
+                    <div class="registro-header">
+                        <h1 style="color:black;">Inventario</h1>
+                        <img src="~/img/1.webp" alt="Imagen de Registro" />
+                    </div>
+                    <center>
+                        
+                           <h2> Regístrate</h2>
+                        
+                    </center>
+                    <div class="card-body registro-form">
+
+                        <form id="registroForm" asp-controller="Login" asp-action="Registro" method="post" enctype="multipart/form-data">
+
+                            <!-- Tu formulario aquí -->
+
+                            <div class="mb-3">
+                                <label for="NombreUsuario" class="form-label">Nombre Completo</label>
+                                <input class="form-control" type="text" placeholder="Nombre Completo" asp-for="NombreUsuario" required />
+                                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Correo" class="form-label">Correo</label>
+                                <input class="form-control" type="text" placeholder="Correo" required asp-for="Correo" pattern="[a-zA-Z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                                <span asp-validation-for="Correo" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Clave" class="form-label">Contraseña</label>
+                                <input class="form-control" type="password" placeholder="Contraseña" asp-for="Clave" required />
+                                <span asp-validation-for="Clave" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Imagen" class="form-label">Imagen de Perfil</label>
+                                <input type="file" class="form-control" name="Imagen" required />
+                                <div class="invalid-feedback">
+                                    Por favor, selecciona una imagen.
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit">Regístrate</button>
+                            </div>
+
+                            @if (ViewData["Mensaje"] != null)
+                            {
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewData["Mensaje"]
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                ¿Ya tienes una cuenta? <a href="@Url.Action("IniciarSesion","Login")"> Iniciar Sesión</a>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function validarFormulario() {
+            var formulario = document.getElementById("registroForm");
+            if (formulario.checkValidity()) {
+                formulario.submit();
+            } else {
+                alert("Por favor, completa todos los campos.");
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+﻿@model ProyectoInventario.Models.Entidades.Proveedor
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = null;
+}
+
+<div class=" col-md-12">
+    <div class=" card">
+        <div class=" card-header text-center">
+            <h5> INGRESOS DE PROVEEDOR </h5>
+        </div>
+        <div class=" card-body text-center">
+            <form asp-action="Crear">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label>Ingrese nombre del Proveedor</label>
+                    <input asp-for="NombreProveedor" class="form-control" placeholder="Ingrese el nombre" />
+                    <span asp-validation-for="NombreProveedor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Contacto</label>
+                    <input asp-for="Contacto" class="form-control" placeholder="Ingrese el Contacto" />
+                    <span asp-validation-for="Contacto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Telefono</label>
+                    <input asp-for="Telefono" class="form-control" placeholder="Ingrese el Telefono" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div><div class="form-group">
+                    <label>Correo</label>
+                    <input asp-for="Correo" class="form-control" placeholder="Ingrese el Correo" />
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+                <div class=" card-footer ">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Guardar</button>
+                        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
