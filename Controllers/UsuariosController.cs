@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventario.Models;
+using System.Security.Claims;
 
 namespace ProyectoInventario.Controllers
 {
@@ -19,6 +20,24 @@ namespace ProyectoInventario.Controllers
 
         public async Task<IActionResult> ListadoUsuario()
         {
+            ClaimsPrincipal claimsUser = HttpContext.User;
+            string nombreUsuario = "";
+            string fotoPerfil = "";
+
+            if (claimsUser.Identity.IsAuthenticated)
+            {
+                nombreUsuario = claimsUser.Claims.Where(c => c.Type == ClaimTypes.Name)
+                    .Select(c => c.Value).SingleOrDefault();
+
+                fotoPerfil = claimsUser.Claims.Where(c => c.Type == "FotoPerfil")
+                    .Select(c => c.Value).SingleOrDefault();
+            }
+
+            ViewData["nombreUsuario"] = nombreUsuario;
+            ViewData["fotoPerfil"] = fotoPerfil;
+
+          
+
             //  _context.Usuarios
             return View(await _context.Usuarios.ToListAsync());
         }
