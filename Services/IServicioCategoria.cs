@@ -5,10 +5,13 @@ namespace ProyectoInventario.Services
     public interface IServicioCategoria
     {
 
-        Task<Producto> GetCategoria(string NombreC, string Descripcion, string TipoProducto);
+        Task<Producto> GetCategoria(string NombreCategorias, string Descripcion, string TipoProducto);
         Task<Producto> SaveCategoria(Categoria categoria);
 
-        Task<Producto> GetCategoria(string NombreC);
+        Task<Producto> GetCategoria(string NombreCategorias);
 
+        
+            
+       
     }
 }

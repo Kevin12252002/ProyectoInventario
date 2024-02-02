@@ -151,7 +151,9 @@ namespace ProyectoInventario.Controllers
 
             return RedirectToAction(nameof(ListadoCategorias));
 
+
         }
+
 
 
 

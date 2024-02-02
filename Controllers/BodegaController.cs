@@ -18,6 +18,7 @@ namespace ProyectoInventario.Controllers
 
         public async Task<IActionResult> ListadoBodegas()
         {
+
             ClaimsPrincipal claimsUser = HttpContext.User;
             string nombreUsuario = "";
             string fotoPerfil = "";
@@ -35,6 +36,7 @@ namespace ProyectoInventario.Controllers
             ViewData["fotoPerfil"] = fotoPerfil;
 
             return View(await _context.Bodegas.ToListAsync());
+
         }
 
         public IActionResult Crear()
@@ -135,7 +137,7 @@ namespace ProyectoInventario.Controllers
             {
                 _context.Bodegas.Remove(bodega);
                 await _context.SaveChangesAsync();
-                TempData["AlertMessage"] = "Autor eliminado exitosamente!!";
+                TempData["AlertMessage"] = "Bodega eliminado exitosamente!!";
             }
             catch (Exception ex)
             {

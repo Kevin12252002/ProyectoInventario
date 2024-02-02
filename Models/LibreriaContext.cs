@@ -21,6 +21,8 @@ namespace ProyectoInventario.Models
 
         }
 
+      
+
         public DbSet<Bodega> Bodegas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
 
@@ -28,6 +30,11 @@ namespace ProyectoInventario.Models
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Producto> Productos { get; set; }
+
+        public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+
+
 
         //modelo de creaccion que hace que la base de datos se conecte con el aplicativo de visual estudio 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

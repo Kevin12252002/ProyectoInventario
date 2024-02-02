@@ -1,16 +1,17 @@
 ﻿@model ProyectoInventario.Models.Entidades.Producto
+
 @{
     ViewData["Title"] = "Editar";
     Layout = null;
 }
 
-<div class=" col-md-12">
-    <div class=" card">
-        <div class=" card-header text-center">
-            <h5> Editar Autor</h5>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header text-center">
+            <h5>Editar Producto</h5>
         </div>
-        <div class=" card-body text-center">
-            <form asp-action="Editar">
+        <div class="card-body text-center">
+            <form asp-action="Editar" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ProductoID" />
                 <div class="form-group">
@@ -19,7 +20,38 @@
                     <span asp-validation-for="NombreProducto" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label>precio</label>
+                    <label>Categoria</label>
+                    @{
+                        var categorias = Model.Categorias ?? new List<SelectListItem>();
+                    }
+                    <select asp-for="CategoriaID" asp-items="@(new SelectList(categorias, "Value", "Text"))" class="form-control">
+                    </select>
+                    <span asp-validation-for="CategoriaID" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Bodega</label>
+                    @{
+                        var bodegas = Model.Bodegas ?? new List<SelectListItem>();
+                    }
+                    <select asp-for="BodegaID" asp-items="@(new SelectList(Model.Bodegas, "Value", "Text"))" class="form-control">
+                    </select>
+                    <span asp-validation-for="BodegaID" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+
+                    <label>Proveedor</label>
+                    @{
+                        var proveedores = Model.Proveedores ?? new List<SelectListItem>();
+                    }
+                    <select asp-for="ProveedorID" asp-items="@(new SelectList(Model.Proveedores, "Value", "Text"))" class="form-control">
+                    </select>
+                    <span asp-validation-for="ProveedorID" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Precio</label>
                     <input asp-for="Precio" class="form-control" placeholder="Ingrese el Precio" />
                     <span asp-validation-for="Precio" class="text-danger"></span>
                 </div>
@@ -28,33 +60,30 @@
                     <input asp-for="Stock" class="form-control" placeholder="Ingrese el Stock" />
                     <span asp-validation-for="Stock" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
-                    <label for="Imagen" class="form-label">Imagen del Producto</label>
-                    <input type="file" class="form-control" name="Imagen" required />
-                    <div class="invalid-feedback">
-                        Por favor, selecciona una imagen.
-                    </div>
+
+                    <label>Marca</label>
+                    @{
+                        var marca = Model.Marcas ?? new List<SelectListItem>();
+                    }
+                    <select asp-for="MarcaID" asp-items="@(new SelectList(Model.Marcas, "Value", "Text"))" class="form-control">
+                    </select>
+                    <span asp-validation-for="MarcaID" class="text-danger"></span>
                 </div>
+                
+
                 <div class="form-group">
                     <label>Activo:</label>
                     <input asp-for="Activo" class="form-check-input" />
                 </div>
 
-                <div class="form-group">
-                    <label>Marca</label>
-                    <input asp-for="Marca" class="form-control" placeholder="Ingrese el Precio" />
-                    <span asp-validation-for="Marca" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label>Modelo</label>
-                    <input asp-for="Modelo" class="form-control" placeholder="Ingrese el Precio" />
-                    <span asp-validation-for="Modelo" class="text-danger"></span>
-                </div>
+               
 
-                <div class=" card-footer ">
+                <div class="card-footer">
                     <div class="form-group">
                         <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Guardar</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>
+                        <a asp-action="ListadoProductos" class="btn btn-sm btn-primary"><i class="fa fa-ban"></i> Cancelar</a>
                     </div>
                 </div>
             </form>

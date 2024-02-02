@@ -1,7 +1,415 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
+
     Layout = "_Layout-Principal";
+    
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+        body {
+            background-color: black; /* Este es un tono de celeste suave */
+            margin: 0;
+            padding: 0;
+        }
+
+    .carousel {
+        width:100%;
+    }
+
+    .carousel-inner {
+        height: 100%;
+            width: 100%;
+    }
+
+    .carousel-item {
+        position: relative;
+        height: 100%;
+        width: 100%; /* Ajusta la anchura del carrusel según sea necesario */
+    }
+
+    .carousel-caption {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        text-align: center;
+        color: #fff;
+    }
+
+    .carousel-caption h5 {
+        font-size: 2em;
+    }
+
+    .service-box {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+      
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .section-header h2 {
+        color: white; /* Color del texto "Servicios" */
+        position: relative;
+        /* Puedes ajustar más estilos según sea necesario */
+    }
+
+        /* Pseudo-elemento para la línea de subrayado */
+        .section-header h2::after {
+            content: ''; /* Contenido del pseudo-elemento (en este caso, una línea) */
+            display: block;
+            width: calc(100% - 20px); /* Ancho de la línea ajustado para comenzar desde el inicio del texto */
+            height: 2px; /* Grosor de la línea de subrayado */
+                background-color: white; /* Color azul para la línea de subrayado */
+            position: absolute;
+            bottom: -5px; /* Ajusta la posición vertical de la línea según sea necesario */
+            left: 10px; /* Ajusta el espacio izquierdo para que la línea comience desde el inicio del texto */
+        }
+.service-box:hover {
+    transform: scale(1.05); /* Efecto de escala al pasar el ratón */
 }
 
+    /* Estilo del ícono en la caja de servicio */
+    .service-box i {
+        font-size: 36px;
+            color: black; /* Color del ícono */
+        background-color:white; /* Color de fondo del ícono */
+        padding: 15px; /* Espaciado interior para hacer el fondo redondo */
 
-            
+        border-radius: 50%; /* Hace que el fondo sea redondo */
+            border: 2px solid black; /* Establece el color del borde */
+        display: inline-block; /* Ajusta el ícono en línea */
+        margin-bottom: 15px; /* Agrega espacio entre el ícono y el texto */
+    }
+
+.media-heading {
+    margin-top: 20px;
+    font-size: 18px; /* Tamaño del título */
+    color: #333; /* Color del título del servicio */
+}
+
+.service-box p {
+    font-size: 14px;
+    color: #666; /* Color del texto del servicio */
+}
+
+/* Alineación del texto en el centro */
+.media-body {
+    text-align: center;
+}
+
+/* Estilos para el título */
+.media-heading {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+        .custom-footer {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .p-4 {
+            padding: 1.5rem !important;
+            background-color: wheat;
+        }
+
+
+</style>
+    </head>
+<body>
+    <br />
+    <br />
+    
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/3.jpg" class="d-block w-100" alt="Imagen 1">
+            <div class="carousel-caption">
+                    <h1>LO QUE BUSCAS PARA TU MOTO 🏍️-----</h1>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/4.jpg" class="d-block w-100" alt="Imagen 2">
+            <div class="carousel-caption">
+                
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/5.jpg" class="d-block w-100" alt="Imagen 3">
+            <div class="carousel-caption">
+                
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/6.jpg" class="d-block w-100" alt="Imagen 4">
+            <div class="carousel-caption">
+                
+            </div>
+        </div>
+          <div class="carousel-item">
+            <img src="~/img/7.jpg" class="d-block w-100" alt="Imagen 5">
+            <div class="carousel-caption">
+             
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/8.jpg" class="d-block w-100" alt="Imagen 6">
+            <div class="carousel-caption">
+             
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/9.jpg" class="d-block w-100" alt="Imagen 7">
+            <div class="carousel-caption">
+              
+            </div>
+        </div>
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br />
+<br />
+<div class="container">
+
+    <div class="section-header">
+        <h2 class="section-title text-center wow fadeInDown">Servicios</h2>
+        <p class="text-center wow fadeInDown"></p>
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <!-- Servicio 1 -->
+        <div class="col-md-4 col-sm-12 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="0ms">
+            <div class="service-box">
+                <div class="media">
+                    <div class="pull-left">
+                        <center><i class="bi bi-hand-thumbs-up"></i></center>
+                    </div>
+                    <div class="media-body">
+                        
+                        <h4 class="text-center">
+                            Tenemos la mejor calidad de repuestos de nuestro segmento.
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="col-md-4 col-sm-12 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
+            <div class="service-box">
+                <div class="media">
+                    <div class="pull-left">
+                        <center> <i class="bi bi-cash-coin"></i></center>
+                    </div>
+                    <div class="media-body">
+                        
+                        <h4>Precios competitivos.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="col-md-4 col-sm-12 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms">
+            <div class="service-box">
+                <div class="media">
+                    <div class="pull-left">
+                        <center>  <i class="bi bi-gear"></i></center>
+                    </div>
+                    <div class="media-body">
+                     
+                        <h4>Servicio al cliente oportuno y eficiente.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+
+<div class="section-header">
+    <h2 class="section-title text-center wow fadeInDown">Nuestras Marcas</h2>
+    <p class="text-center wow fadeInDown"></p>
+</div>
+<br />
+<br />
+<!-- Carrusel de fotos medianas -->
+<div id="carruselFotosMedianas" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/1L.png" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 1">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/2L.jpg" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 2">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/3L.png" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 3">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/4L.png" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 4">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/5L.png" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 5">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/6L.jpg" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 6">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/7L.png" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 7">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/8L.png" class="d-block mx-auto" style="max-width: 500px;" alt="Foto 8">
+        </div>
+        <div class="text-center mt-3">
+            <button class="carousel-control-prev" type="button" data-target="#carruselFotosMedianas" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carruselFotosMedianas" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container my-5">
+
+        <footer class="bg-primary text-center text-lg-start text-white custom-footer">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row my-4">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <br />
+
+                    <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 150px; height: 150px;">
+                        <img src="~/img/1.webp" height="70" alt=""
+                             loading="lazy" />
+                    </div>
+
+                    <p class="text-center">Inventario de productos y accsesorios de motos</p>
+
+                    <ul class="list-unstyled d-flex flex-row justify-content-center">
+                        <li>
+                            <a class="text-white px-2" href="#!">
+                                <i class="fab fa-facebook-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-white px-2" href="#!">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-white ps-2" href="#!">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <br />
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4"> Marcas</h5>
+
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>AGV</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>RAINERS</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>GIVI</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>SHAD</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <br />
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4"> Marcas</h5>
+                  
+
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>LS2</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>ALPINESTARS</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>ITR</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#!" class="text-white"><i class="bi bi-pentagon-fill"></i>DAINESE</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Contact</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <p><i class="fas fa-map-marker-alt pe-2"></i>Warsaw, 57 Street, Poland</p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-phone pe-2"></i>+ 01 234 567 89</p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>contact@example.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(255, 255, 255, 1); color: #000;">
+                © 2020 Copyright:
+                <a class="text-black" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            </div>
+        <!-- Copyright -->
+    </footer>
+    
+</div>
+<!-- End of .container -->
+    </body>
+
+</html>

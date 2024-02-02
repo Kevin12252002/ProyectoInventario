@@ -1,0 +1,142 @@
+﻿@model IEnumerable<ProyectoInventario.Models.Entidades.Usuario>
+
+@{
+    ViewData["Title"] = "ListadoUsuario";
+    Layout = "_Layout-Principal";
+}
+
+<style>
+    body {
+        background-color: black; /* Este es un tono de celeste suave */
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .btn-success {
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .custom-edit-button {
+        background-color: black; /* Color de fondo amarillo */
+        color: white; /* Color del texto */
+        border-color: black; /* Color del borde */
+    }
+
+    .alert-success {
+        color: white;
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .custom-delete-button {
+        background-color: black; /* Color de fondo rojo */
+        color: #fff; /* Color del texto */
+        border-color: black; /* Color del borde */
+    }
+
+    .custom-edit-button:hover {
+        background-color: tan; /* Color diferente para el efecto hover */
+        border-color: tan; /* Color diferente para el efecto hover */
+        color: #fff
+    }
+
+    .custom-delete-button:hover {
+        background-color: tan; /* Color diferente para el efecto hover */
+        border-color: tan; /* Color diferente para el efecto hover */
+    }
+</style>
+
+
+@if (TempData["AlertMessage"] != null)
+{
+
+
+    <div class=" alert alert-success">
+        <strong> Ok!! ---</strong>@TempData["AlertMessage"]
+    </div>
+}
+<br />
+<br />
+
+
+<div class="col-md-12">
+
+    <div class="card">
+        <div class="card-header text-center">
+            <h5>Lista de Usuarios </h5>
+        </div>
+        <div class="card-body">
+            <table id="usuario" class="table table- table-hover table responsive table stripped">
+
+                <thead>
+                    <tr>
+                        <th scope="col">ID_suario</th>
+                        <th scope="col">Nombre_Usuario</th>
+                   
+                        <th scope="col">ROLES</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.IdUsuario</th>
+                            <td> @Html.DisplayFor(ModelItem => item.NombreUsuario) </td>
+                         
+                            <td> @Html.DisplayFor(ModelItem => item.Roles) </td>
+
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<partial name="_MostarModal" />
+<partial name="_EliminarModal" />
+
+@section Scripts {
+    <script src="~/js/showmodal.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#usuario').DataTable({
+                "language": {
+                    url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+                "pagingType": "full_numbers", // Agrega estilos de paginación de Bootstrap
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                "pageLength": 10
+            });
+
+            // Alinea el campo de búsqueda a la derecha
+            $('.dataTables_filter input').addClass('pull-right');
+        });
+    </script>
+
+    <script>
+        sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Proveedor/Eliminar/', false);
+    </script>
+}

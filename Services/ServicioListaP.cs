@@ -13,30 +13,11 @@ namespace ProyectoInventario.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<SelectListItem>> GetListaProductos()
-        {
-            List<SelectListItem> list = await _context.Productos.Select(x => new SelectListItem
-            {
-                Text = x.NombreProducto,
-       
-                Value = $"{x.ProductoID}"
-            })
-            .OrderBy(x => x.Text)
-            .ToListAsync();
-
-            list.Insert(0, new SelectListItem
-            {
-                Text = "[Seleccione un Producto....]",
-                Value = "0"
-
-            });
-            return list;
-        }
         public async Task<IEnumerable<SelectListItem>> GetListaCategorias()
         {
             List<SelectListItem> list = await _context.Categorias.Select(x => new SelectListItem
             {
-                Text = x.NombreCategoria,
+                Text = x.NombreCategorias,
 
                 Value = $"{x.CategoriaID}"
             })
@@ -45,7 +26,7 @@ namespace ProyectoInventario.Services
 
             list.Insert(0, new SelectListItem
             {
-                Text = "[Seleccione un Producto....]",
+                Text = "[Seleccione una Categoria....]",
                 Value = "0"
 
             });
@@ -64,7 +45,7 @@ namespace ProyectoInventario.Services
 
             list.Insert(0, new SelectListItem
             {
-                Text = "[Seleccione un Producto....]",
+                Text = "[Seleccione una Bodega....]",
                 Value = "0"
 
             });
@@ -83,7 +64,26 @@ namespace ProyectoInventario.Services
 
             list.Insert(0, new SelectListItem
             {
-                Text = "[Seleccione un Producto....]",
+                Text = "[Seleccione un Proveedor....]",
+                Value = "0"
+
+            });
+            return list;
+        }
+        public async Task<IEnumerable<SelectListItem>> GetListaMarcas()
+        {
+            List<SelectListItem> list = await _context.Marcas.Select(x => new SelectListItem
+            {
+                Text = x.NombreMarcas,
+
+                Value = $"{x.MarcaID}"
+            })
+            .OrderBy(x => x.Text)
+            .ToListAsync();
+
+            list.Insert(0, new SelectListItem
+            {
+                Text = "[Seleccione una Marca....]",
                 Value = "0"
 
             });

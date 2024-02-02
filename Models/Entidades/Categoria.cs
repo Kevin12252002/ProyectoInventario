@@ -9,9 +9,9 @@ namespace ProyectoInventario.Models.Entidades
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoriaID { get; set; }
         [Required(ErrorMessage = "El campo Nombre Completo es obligatorio.")]
-        public string NombreCategoria { get; set; }  
-        public string Descripcion { get; set; }
-        public string TipoProducto { get; set; }
+        public string? NombreCategorias { get; set; }  
+        public string?Descripcion { get; set; }
+        public string? TipoProducto { get; set; }
 
     }
 }

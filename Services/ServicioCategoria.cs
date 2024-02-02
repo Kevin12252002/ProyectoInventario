@@ -14,17 +14,19 @@ namespace ProyectoInventario.Services
 
         }
 
-        public async Task<Categoria> GetCategoria(string NombreC, string Descripcion, string TipoProducto)
+        public async Task<Categoria> GetCategoria(string NombreCategorias, string Descripcion, string TipoProducto)
         {
-            Categoria categoria = await _context.Categorias.Where(u => u.NombreCategoria == NombreC && u.Descripcion == Descripcion && u.TipoProducto == TipoProducto).FirstOrDefaultAsync();
+            Categoria categoria = await _context.Categorias.Where(u => u.NombreCategorias == NombreCategorias && u.Descripcion == Descripcion && u.TipoProducto == TipoProducto).FirstOrDefaultAsync();
 
             return categoria;
         }
 
-        public async Task<Categoria> GetCategoria(string NombreC)
+        public async Task<Categoria> GetCategoria(string NombreCategoria)
         {
-            return await _context.Categorias.FirstOrDefaultAsync(u => u.NombreCategoria == NombreC);
+            return await _context.Categorias.FirstOrDefaultAsync(u => u.NombreCategorias == NombreCategoria);
         }
+
+       
 
         public async Task<Categoria> SaveCategoria(Categoria categoria)
         {
@@ -33,12 +35,12 @@ namespace ProyectoInventario.Services
             return categoria;
         }
 
-        Task<Producto> IServicioCategoria.GetCategoria(string NombreC, string Descripcion, string TipoProducto)
+        Task<Producto> IServicioCategoria.GetCategoria(string NombreCategoria, string Descripcion, string TipoProducto)
         {
             throw new NotImplementedException();
         }
 
-        Task<Producto> IServicioCategoria.GetCategoria(string NombreC)
+        Task<Producto> IServicioCategoria.GetCategoria(string NombreCategoria)
         {
             throw new NotImplementedException();
         }

@@ -1,19 +1,52 @@
 ﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-<div class="modal fade in" id="deleteDialog" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<style>
+    .custom-modal {
+       
+        color: #212529;
+    }
+
+        .custom-modal .modal-header {
+            background-color: tan;
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: tan;
+        color: #ffffff;
+        border-color: tan
+        }
+
+         .btn-danger {
+            background-color: tan;
+            color: #ffffff;
+        border-color: tan
+        }
+
+        .custom-modal .modal-footer .btn-primary:hover {
+            background-color: tan;
+        color: #ffffff;
+        border-color:tan
+        }
+
+        .custom-modal .modal-footer .btn-danger:hover {
+            background-color: tan;
+            color: #ffffff;
+        border-color: tan
+        }
+</style>
+
+<div class="modal fade in custom-modal" id="deleteDialog" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-blue-gradient">
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Borrar Registro</h5>
             </div>
             <div class="modal-body">
-                <p>¿Estas seguro de querer borrar este registro?</p>
+                <p>¿Estás seguro de querer borrar este registro?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"> </i> No</button>
-                <button type="button" class="btn btn-danger" id="btnYesDelete"><i class="fa fa-check-circle"> </i> Sí</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"></i> No</button>
+                <button type="button" class="btn btn-danger" id="btnYesDelete"><i class="fa fa-check-circle"></i> Sí</button>
             </div>
         </div>
     </div>

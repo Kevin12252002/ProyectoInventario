@@ -68,13 +68,20 @@ namespace ProyectoInventario.Controllers
                 return View();
             }
 
-            List<Claim> claims = new List<Claim>()
+            List<Claim> claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, usuarioEncontrado.NombreUsuario),
+        new Claim("FotoPerfil", usuarioEncontrado.URLFotoPerfil),
+    };
+
+            foreach (var rol in usuarioEncontrado.Roles)
             {
-                new Claim(ClaimTypes.Name, usuarioEncontrado.NombreUsuario),
-                new Claim("FotoPerfil", usuarioEncontrado.URLFotoPerfil),
-            };
+                claims.Add(new Claim(ClaimTypes.Role, rol));
+            }
+
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
             AuthenticationProperties properties = new AuthenticationProperties()
             {
                 AllowRefresh = true,
@@ -84,13 +91,20 @@ namespace ProyectoInventario.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 properties
-                );
+            );
+
+            // Validación por cookies
+            var user = HttpContext.User;
+            if (user.Identity.IsAuthenticated)
+            {
+                // El usuario está autenticado por cookies, puedes realizar acciones adicionales si es necesario.
+            }
 
             return RedirectToAction("Index", "Home");
-
         }
- 
-public IActionResult CerrarSesion()
+
+
+        public IActionResult CerrarSesion()
         {
             // Lógica para cerrar la sesión
             // Aquí es donde generalmente se limpian los datos de la sesión
@@ -98,5 +112,28 @@ public IActionResult CerrarSesion()
             // Redirige a la página de inicio de sesión
             return RedirectToAction("IniciarSesion");
         }
+        public IActionResult VerificarRoles()
+        {
+            // Obtener la lista de roles del usuario
+            var roles = ((ClaimsIdentity)User.Identity).Claims
+                .Where(c => c.Type == ClaimTypes.Role)
+                .Select(c => c.Value);
+
+            // Convertir la lista de roles en una cadena para mostrarla
+            var rolesString = string.Join(", ", roles);
+
+            // Mostrar la información de roles
+            return Content($"Roles del usuario: {rolesString}");
+        }
+        public IActionResult MostrarClaims()
+        {
+            var claims = ((ClaimsIdentity)User.Identity).Claims;
+            foreach (var claim in claims)
+            {
+                Console.WriteLine($"{claim.Type}: {claim.Value}");
+            }
+            return Content("Revisa la consola del navegador o la salida de la aplicación para ver los claims.");
+        }
+
     }
 }

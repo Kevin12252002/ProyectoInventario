@@ -16,7 +16,7 @@ namespace ProyectoInventario.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.14")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -34,7 +34,6 @@ namespace ProyectoInventario.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ubicacion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BodegaID");
@@ -51,20 +50,38 @@ namespace ProyectoInventario.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoriaID"));
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NombreCategoria")
+                    b.Property<string>("NombreCategorias")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TipoProducto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoriaID");
 
                     b.ToTable("Categorias");
+                });
+
+            modelBuilder.Entity("ProyectoInventario.Models.Entidades.Marca", b =>
+                {
+                    b.Property<int>("MarcaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MarcaID"));
+
+                    b.Property<string>("NombreMarcas")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaisOrigen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MarcaID");
+
+                    b.ToTable("Marcas");
                 });
 
             modelBuilder.Entity("ProyectoInventario.Models.Entidades.Producto", b =>
@@ -84,16 +101,10 @@ namespace ProyectoInventario.Migrations
                     b.Property<int>("CategoriaID")
                         .HasColumnType("int");
 
-                    b.Property<string>("Marca")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Modelo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MarcaID")
+                        .HasColumnType("int");
 
                     b.Property<string>("NombreProducto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Precio")
@@ -105,14 +116,13 @@ namespace ProyectoInventario.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.Property<string>("URLFotoProducto")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ProductoID");
 
                     b.HasIndex("BodegaID");
 
                     b.HasIndex("CategoriaID");
+
+                    b.HasIndex("MarcaID");
 
                     b.HasIndex("ProveedorID");
 
@@ -128,11 +138,9 @@ namespace ProyectoInventario.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProveedorID"));
 
                     b.Property<string>("Contacto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreProveedor")
@@ -140,12 +148,28 @@ namespace ProyectoInventario.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefono")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProveedorID");
 
                     b.ToTable("Proveedors");
+                });
+
+            modelBuilder.Entity("ProyectoInventario.Models.Entidades.Roles", b =>
+                {
+                    b.Property<int>("RolID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolID"));
+
+                    b.Property<string>("NombreRol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RolID");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("ProyectoInventario.Models.Entidades.Usuario", b =>
@@ -167,6 +191,10 @@ namespace ProyectoInventario.Migrations
                     b.Property<string>("NombreUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Roles")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("URLFotoPerfil")
                         .HasColumnType("nvarchar(max)");
@@ -193,6 +221,12 @@ namespace ProyectoInventario.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProyectoInventario.Models.Entidades.Marca", "Marca")
+                        .WithMany()
+                        .HasForeignKey("MarcaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ProyectoInventario.Models.Entidades.Proveedor", "Proveedor")
                         .WithMany()
                         .HasForeignKey("ProveedorID")
@@ -202,6 +236,8 @@ namespace ProyectoInventario.Migrations
                     b.Navigation("Bodega");
 
                     b.Navigation("Categoria");
+
+                    b.Navigation("Marca");
 
                     b.Navigation("Proveedor");
                 });

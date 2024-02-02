@@ -10,21 +10,56 @@ namespace ProyectoInventario.Models.Entidades
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductoID { get; set; }
-        [Required(ErrorMessage = "El campo Nombre Completo es obligatorio.")]
+        
+        public string? NombreProducto { get; set; }
 
-
-        public string NombreProducto { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
-        public string? URLFotoProducto { get; set; }
+       
         public bool Activo { get; set; } = true;
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-        public Bodega bodega { get; set; }
 
-        public Categoria categoria { get; set; }
 
-        public Proveedor proveedor { get; set; }
+
+
+       
+
+        
+
+        public Categoria ?Categoria { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una categoría.")]
+        public int CategoriaID { get; set; }
+
+        public Bodega ?Bodega { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una bodega.")]
+        public int BodegaID { get; set; }
+
+        public Proveedor ?Proveedor { get; set; }
+
+
+        [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar un proveedor.")]
+        public int ProveedorID { get; set; }
+
+
+        public Marca ?Marca { get; set; }
+
+
+        [Range(1, int.MaxValue, ErrorMessage = "Debes seleccionar una marca.")]
+        public int MarcaID { get; set; }
+
+
+
+        [NotMapped]
+        public IEnumerable<SelectListItem> ?Categorias { get; set; }
+
+        [NotMapped]
+
+        public IEnumerable<SelectListItem> ?Bodegas { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> ?Proveedores { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> ?Marcas{ get; set; }
+
+
 
     }
 }

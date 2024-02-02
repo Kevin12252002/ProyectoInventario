@@ -26,6 +26,9 @@ namespace ProyectoInventario.Services
             return await _context.Bodegas.FirstOrDefaultAsync(u => u.NombreBodega == NombreBodega);
         }
 
+        
+       
+
         public async Task<Bodega> SaveBodega(Bodega bodega)
         {
             _context.Bodegas.Add(bodega);

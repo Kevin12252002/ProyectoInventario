@@ -16,5 +16,8 @@ namespace ProyectoInventario.Models.Entidades
         public string Correo { get; set; } = null!;
 
         public string Clave { get; set; } = null!;
+
+
+        public string[] Roles { get; set; }
     }
 }

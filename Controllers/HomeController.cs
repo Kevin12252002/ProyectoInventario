@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using ProyectoInventario.Models;
 using System.Diagnostics;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProyectoInventario.Controllers
 {
+    [Authorize(Policy = "RequireLoggedIn")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -36,11 +38,49 @@ namespace ProyectoInventario.Controllers
             ViewData["fotoPerfil"] = fotoPerfil;
             return View();
         }
+        [Authorize(Roles = "Admin")]
+
+        public IActionResult Bodega()
+        {
+            return View();
+        }
+
+        public IActionResult Categoria()
+        {
+            return View();
+        }
+
+        public IActionResult Marca()
+
+        {
+            return View();
+        }
+
+        public IActionResult Producto()
+
+        {
+            return View();
+        }
+
+        public IActionResult Proveedor()
+
+        {
+            return View();
+        }
+
+        
+        public IActionResult Roles()
+
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
             return View();
         }
+       
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

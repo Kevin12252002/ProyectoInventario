@@ -11,7 +11,7 @@ namespace ProyectoInventario.Services
         Task<IEnumerable<SelectListItem>>
             GetListaProveedores();
         Task<IEnumerable<SelectListItem>>
-         GetListaProductos();
+           GetListaMarcas();
 
 
     }

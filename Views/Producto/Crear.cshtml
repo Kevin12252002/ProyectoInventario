@@ -5,21 +5,41 @@
     Layout = null;
 }
 
-<div class=" col-md-12">
-    <div class=" card">
-        <div class=" card-header text-center">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header text-center">
             <h5> INGRESOS DE PRODUCTOS </h5>
         </div>
-        <div class=" card-body text-center">
-            <form asp-action="Crear">
+        <div class="card-body text-center">
+            <form asp-action="Crear" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label>Ingrese nombre del Producto</label>
                     <input asp-for="NombreProducto" class="form-control" placeholder="Ingrese un Nombre" />
                     <span asp-validation-for="NombreProducto" class="text-danger"></span>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Categoria</label>
+                    <select asp-for="CategoriaID" asp-items="Model.Categorias" class="form-control" required>
+                    </select>
+                    <span asp-validation-for="CategoriaID" class="field-validation-error"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Bodega</label>
+                    <select asp-for="BodegaID" asp-items="Model.Bodegas" class="form-control" required>
+                    </select>
+                    <span asp-validation-for="BodegaID" class="field-validation-error"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Proveedor</label>
+                    <select asp-for="ProveedorID" asp-items="Model.Proveedores" class="form-control" required>
+                    </select>
+                    <span asp-validation-for="ProveedorID" class="field-validation-error"></span>
+                </div>
+
                 <div class="form-group">
-                    <label>precio</label>
+                    <label>Precio</label>
                     <input asp-for="Precio" class="form-control" placeholder="Ingrese el Precio" />
                     <span asp-validation-for="Precio" class="text-danger"></span>
                 </div>
@@ -28,29 +48,21 @@
                     <input asp-for="Stock" class="form-control" placeholder="Ingrese el Stock" />
                     <span asp-validation-for="Stock" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label for="Imagen" class="form-label">Imagen del Producto</label>
-                    <input type="file" class="form-control" name="Imagen" required />
-                    <div class="invalid-feedback">
-                        Por favor, selecciona una imagen.
-                    </div>
-                </div>
+              
+
                 <div class="form-group">
                     <label>Activo:</label>
                     <input asp-for="Activo" class="form-check-input" />
                 </div>
 
-                <div class="form-group">
-                    <label>Marca</label>
-                    <input asp-for="Marca" class="form-control" placeholder="Ingrese La Marca" />
-                    <span asp-validation-for="Marca" class="text-danger"></span>
+                <div class="mb-3">
+                    <label class="form-label">Marca</label>
+                    <select asp-for="MarcaID" asp-items="Model.Marcas" class="form-control" required>
+                    </select>
+                    <span asp-validation-for="MarcaID" class="field-validation-error"></span>
                 </div>
-                <div class="form-group">
-                    <label>Modelo</label>
-                    <input asp-for="Modelo" class="form-control" placeholder="Ingrese El Modelo" />
-                    <span asp-validation-for="Modelo" class="text-danger"></span>
-                </div>
-                <div class=" card-footer ">
+
+                <div class="card-footer">
                     <div class="form-group">
                         <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Guardar</button>
                         <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>

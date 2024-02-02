@@ -3,133 +3,183 @@
 }
 
 <!DOCTYPE html>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+  
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url('img/2.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    <title>Login & Register</title>
 
-        .inicio-sesion-header {
-            background-color: rgb(30, 144, 255);
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    body {
+        background-color: #121212;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/logo.jpg');
+           background-position: center;
+        background-size: cover;
+    }
 
+    .container-page {
+        height: 80vh;
+        width: 50vh;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        transition: all 0.8s;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid white;
+        backdrop-filter: blur(10px);
+    }
+
+    .login-container {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+    }
+
+    form {
+        width: 80%;
+        margin: auto;
+    }
+
+    .input-line-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .name-input {
+        font-size: 12px;
+    }
+
+    .input-line {
+        width: 100%;
+        height: 30px;
+        background-color: transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px solid #CBCBCB;
+        outline: none;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .button-login {
+        width: 100%;
+        height: 45px;
+        border-radius: 55px;
+        background: rgba(255, 255, 255, 0.137);
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: none;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+    }
+
+    .button-second {
+        width: 100%;
+        height: 45px;
+        border-radius: 55px;
+        background: transparent;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: 2px solid white;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        opacity: 0.6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button-login:hover {
+        box-shadow: 0px 0px 8px #ffffffa4;
+    }
+
+    .button-second:hover {
+        opacity: 1;
+    }
+
+        .btn-primary {
+            color: #fff;
+            background-color: black;
+            border-color: black;
            
-              
+        }
 
-            .inicio-sesion-header img {
-                max-width: 40%;
-                height: auto;
-                border-radius: 50%; /* Añadir un borde redondeado a la imagen si es necesario */
-                border: 2px solid #fff; /* Añadir un borde blanco alrededor de la imagen */
+            .btn-primary:hover {
+               
+                color: #fff;
+                background-color: tan;
+                border-color: tan;
             }
-
-            .inicio-sesion-header p {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-                color:black/* Color del texto blanco */
-            }
-
-        .inicio-sesion-form {
-            background-color: rgb(30, 144, 255);
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-        }
-
-        .text-danger {
-            display: none;
-            color: red;
-        }
-
-        .form-control:invalid + .text-danger {
-            display: block;
-        }
-    </style>
+</style>
 </head>
 <body>
 
-    <div class="container">
 
-        <div class="row justify-content-end">
-            <div class="col-12 col-xl-4 col-md-6">
-                <div class="opacity-75">
-                <div class="card">
-                    <div class="inicio-sesion-header">
-                        <h1 style="color:black;">Inventario</h1>
-                        <img src="~/img/1.webp" alt="Imagen de Inicio de Sesión" />
-                      
-                    </div>
 
-                    <center>
-
-                        <h2>Iniciar Sesión</h2>
-                        
-                    </center>
-
-                    <div class="card-body inicio-sesion-form">
-                        <form asp-controller="Login" asp-action="IniciarSesion" method="post">
-                            <!-- Tu formulario aquí -->
-                            <div class="mb-3">
-                                <label for="correo" class="form-label">Correo</label>
-                                <input class="form-control" type="text" placeholder="Correo" required name="correo" />
-                                <span class="text-danger" id="error-correo"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="clave" class="form-label">Contraseña</label>
-                                <input class="form-control" type="password" placeholder="Contraseña" required name="clave" />
-                                <span class="text-danger" id="error-clave"></span>
-                            </div>
-
-                            <div class="d-grid gap-2 mb-3">
-                                <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
-                            </div>
-
-                            @if (ViewData["Mensaje"] != null)
-                            {
-                                <div class="form-group">
-                                    <div class="alert alert-danger" role="alert">
-                                        @ViewData["Mensaje"]
-                                    </div>
-                                </div>
-                            }
-
-                            <div class="mb-3">
-                                ¿No tienes una cuenta? <a href="@Url.Action("Registro","Login")"> Regístrate</a>
-                            </div>
-                        </form>
-                    </div>
-
+    <div class="container-page" id="Container">
+        <div class="login-container" id="LoginContainer">
+            <h1 class="title">Iniciar Sesión</h1>
+            <form asp-controller="Login" asp-action="IniciarSesion" method="post">
+                <div class="input-line-container">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input class="form-control" type="text" placeholder="Correo" required name="correo" autocomplete="off" />
+                    <span class="text-danger" id="error-correo"></span>
                 </div>
-
-            </div>
+                <div class="input-line-container">
+                    <label for="clave" class="form-label">Contraseña</label>
+                    <input class="form-control" type="password" placeholder="Contraseña" required name="clave" autocomplete="off" />
+                    <span class="text-danger" id="error-clave"></span>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+                </div>
+                @if (ViewData["Mensaje"] != null)
+                {
+                    <div class="form-group">
+                        <div class="alert alert-danger" role="alert">
+                            @ViewData["Mensaje"]
+                        </div>
+                    </div>
+                }
+                <div class="d-grid gap-2 mb-3 text-right">
+                    ¿No tienes una cuenta? <a href="@Url.Action("Registro","Login")" class="btn btn-primary">Regístrate</a>
+                </div>
+            </form>
         </div>
-
-    </div>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="code.js"></script>
 </body>
-</html>
-
+</html> 

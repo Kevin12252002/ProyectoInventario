@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProyectoInventario.Models.Entidades.Producto>
+﻿@using ProyectoInventario.Models.Entidades
+@model IEnumerable<ProyectoInventario.Models.Entidades.Producto>
 @{
     ViewData["Title"] = "ListadoAutores";
 
@@ -6,7 +7,63 @@
 
 }
 
+<style>
+    body {
+        background-color: black; /* Este es un tono de celeste suave */
+    }
 
+    .btn-primary {
+        color: #fff;
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .btn-success{
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .btn-success {
+        background-color: tan;
+        border-color: tan;
+    }
+
+    .custom-edit-button {
+        background-color: black; /* Color de fondo amarillo */
+        color: white; /* Color del texto */
+        border-color: black; /* Color del borde */
+    }
+
+    .custom-delete-button {
+        background-color: black; /* Color de fondo rojo */
+        color: #fff; /* Color del texto */
+        border-color: black; /* Color del borde */
+    }
+
+    .custom-edit-button:hover {
+        background-color: tan; /* Color diferente para el efecto hover */
+        border-color: tan; /* Color diferente para el efecto hover */
+        color: #fff
+    }
+
+    .custom-delete-button:hover {
+        background-color: tan; /* Color diferente para el efecto hover */
+        border-color: tan; /* Color diferente para el efecto hover */
+    }
+
+    .alert-success {
+        color: white;
+        background-color: tan;
+        border-color: tan;
+    }
+</style>
 @if (TempData["AlertMessage"] != null)
 {
 
@@ -15,12 +72,15 @@
         <strong> Ok!! ---</strong>@TempData["AlertMessage"]
     </div>
 }
+<br>
+<br />
 <p>
-    <a onclick="showInPopup('@Url.Action("Crear" , "Producto",
-       new { Productoid = 0 }, Context.Request.Scheme)','')"
-       class=" btn btn-sn btn-primary text-white">
-        <i class="fa fa-plus-circle"></i> Agregar un Producto
+    <a onclick="showInPopup('@Url.Action("Crear", "Producto", new { Productoid = 0 }, Context.Request.Scheme)','')"
+       class="btn btn-sn text-white" style="
+       background-color: tan">
+        <i class="fa fa-plus-circle"></i> Agregar una producto
     </a>
+    
 
 
 </p>
@@ -37,41 +97,47 @@
                 <thead>
                     <tr>
                         <th scope="col">Id_Producto</th>
-                        <th scope="col">Nombre_Productor</th>
+                        <th scope="col">NombreProducto</th>
+                         <th scope="col">Nombre Categoria</th>
+                        <th scope="col">Nombre Bodega</th>
+                        <th scope="col">Nombre Proveedor</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
-                        <th scope="col">Url</th>
+                        
                         <th scope="col">Activo</th>
                         <th scope="col">Marca</th>
-                        <th scope="col">Modelo</th>
+                        
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var producto in Model)
                     {
                         <tr>
-                            <th scope="row">@item.ProductoID</th>
-                            <td> @Html.DisplayFor(ModelItem => item.NombreProducto) </td>
-                            <td> @Html.DisplayFor(ModelItem => item.Precio) </td>
-                            <td> @Html.DisplayFor(ModelItem => item.Stock) </td>
-                            <td> @Html.DisplayFor(ModelItem => item.URLFotoProducto) </td>
-                            <td> @Html.DisplayFor(ModelItem => item.Activo) </td>
-                            <td> @Html.DisplayFor(ModelItem => item.Marca) </td>
-                            <td> @Html.DisplayFor(ModelItem => item.Modelo) </td>
+                            <th scope="row">@producto.ProductoID</th>
+                            <td>@producto.NombreProducto</td>
+                            <td>@(producto.Categoria?.NombreCategorias ?? "Sin categoría")</td>
+                            <td>@(producto.Bodega?.NombreBodega ?? "Sin bodega")</td>
+                            <td>@(producto.Proveedor?.NombreProveedor ?? "Sin proveedor")</td>
+                            <td>@producto.Precio</td>
+                            <td>@producto.Stock</td>
+                           
+                            <td>@producto.Activo</td>
+                            <td>@(producto.Marca?.NombreMarcas ?? "Sin Marca")</td>
+                           
                             
                             <td>
                                 <a onclick="showInPopup('@Url.Action("Editar","Producto",
-                                new { id = item.ProductoID }, Context.Request.Scheme)' ,
-                                  'Actualizar Autor')" class="btn btn-outline-warning btn-sm">
-                                    <i class="fa fa-pencil-alt"></i>
+                                new { id = producto.ProductoID }, Context.Request.Scheme)' ,
+                                  'Actualizar Producto')" class="btn btn-outline-warning btn-sm custom-edit-button">
+                                    <i class="fa fa-pencil-alt"></i>Editar
                                 </a>
-                                <button data-id="@item.ProductoID"
-                                        class="btn btn-outline-danger btn-sm deleteItem"
+                                <button data-id="@producto.ProductoID"
+                                        class="btn btn-outline-danger btn-sm deleteItem custom-delete-button"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteDialog">
-                                    <i class="fa fa-trash"></i>
+                                    <i class="fa fa-trash"></i>Eliminar
                                 </button>
                             </td>
                         </tr>
@@ -89,27 +155,30 @@
 <partial name="_MostarModal" />
 <partial name="_EliminarModal" />
 
+
 @section Scripts {
-
-
     <script src="~/js/showmodal.js"></script>
-
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            $('#autor').DataTable(
-                {
-                    "language": {
-                        url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                    },
-                });
+            $('#autor').DataTable({
+                "language": {
+                    url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+                "pagingType": "full_numbers", // Agrega estilos de paginación de Bootstrap
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                "pageLength": 10
+            });
+
+            // Alinea el campo de búsqueda a la derecha
+            $('.dataTables_filter input').addClass('pull-right');
         });
     </script>
 
     <script>
         sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Producto/Eliminar/', false);
     </script>
-
 }
 

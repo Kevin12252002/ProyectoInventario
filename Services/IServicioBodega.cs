@@ -9,6 +9,6 @@ namespace ProyectoInventario.Services
         Task<Producto> SaveBodega(Bodega bodega);
 
         Task<Producto> GetBodega(string NombreBodega);
-
+       
     }
 }
